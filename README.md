@@ -32,7 +32,7 @@ El obligatorio se evaluará durante la defensa, en la misma se analizará la c
 
 Para consultar el pronóstico del clima se pide usar el servicio openweathermap.org, el mismo expone una API REST que debera ser consultada usando Alamofire. Si bien se alienta el uso bibliotecas open source, en este caso se restringe la implementación de las consultas a esta API al uso de Alamofire sin ninguna otra capa de abstracción (si se pueden usar para mapeo de objetos con JSON).
 
-La Etapa 1 tiene una nota máxima de 90 puntos y la etapa 2 una nota máxima de 10 puntos.
+La Etapa 1 tiene una nota máxima de 90 puntos y la etapa 2 una nota máxima de 10 puntos..
 
 
 
