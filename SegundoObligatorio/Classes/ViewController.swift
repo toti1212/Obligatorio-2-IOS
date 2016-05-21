@@ -12,6 +12,10 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var weatherIconLabel: UILabel!
     
+    @IBAction func viewSettings(sender: AnyObject) {
+        performSegueWithIdentifier("viewSettings", sender: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,12 +25,20 @@ class ViewController: UIViewController {
 //        http://openweathermap.org/weather-conditions
         
         self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
+        
+        //self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "img-background.png")!)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 
 
 }
