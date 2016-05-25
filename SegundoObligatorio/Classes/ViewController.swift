@@ -22,6 +22,12 @@ class ViewController: UIViewController {
         
         self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        APIClient.sharedClient.wheatherOnCompletion { () -> Void in
+            
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
