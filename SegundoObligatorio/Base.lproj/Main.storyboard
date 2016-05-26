@@ -39,6 +39,19 @@
                                     <action selector="viewSettings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8rU-Um-nIX"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nK-KP-k6b">
+                                <rect key="frame" x="279" y="68" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="laK-3N-ao2">
+                                <rect key="frame" x="225" y="134" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="Di0-vu-rSX"/>
+                                    <constraint firstAttribute="width" constant="150" id="j4C-nr-MOe"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -46,9 +59,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="HIs-Cj-xeJ" secondAttribute="trailing" constant="11" id="4KA-IY-mgW"/>
                             <constraint firstItem="ipH-gU-egB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="O1J-57-fLS"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Xfy-zo-UBg" secondAttribute="bottom" id="QXq-zt-Ill"/>
+                            <constraint firstItem="4nK-KP-k6b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SAX-5Y-1D4"/>
+                            <constraint firstItem="laK-3N-ao2" firstAttribute="top" secondItem="4nK-KP-k6b" secondAttribute="bottom" constant="45" id="Vkh-zQ-Ftg"/>
                             <constraint firstItem="HIs-Cj-xeJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="Wuu-qV-M23"/>
                             <constraint firstItem="Xfy-zo-UBg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="YBo-Qf-nll"/>
+                            <constraint firstItem="4nK-KP-k6b" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="48" id="juX-ZK-Lzz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Xfy-zo-UBg" secondAttribute="trailing" constant="-20" id="l8l-ax-s6n"/>
+                            <constraint firstItem="laK-3N-ao2" firstAttribute="centerX" secondItem="4nK-KP-k6b" secondAttribute="centerX" id="o4h-qp-pXI"/>
                             <constraint firstItem="ipH-gU-egB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sxD-fJ-cHy"/>
                         </constraints>
                     </view>
@@ -62,10 +79,10 @@
             </objects>
             <point key="canvasLocation" x="-502" y="-231"/>
         </scene>
-        <!--Ajustes-->
+        <!--Settings-->
         <scene sceneID="zYb-ak-gwi">
             <objects>
-                <viewController id="p1E-ge-Fww" sceneMemberID="viewController">
+                <viewController id="p1E-ge-Fww" customClass="SettingsViewController" customModule="SegundoObligatorio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ISh-T4-F7e"/>
                         <viewControllerLayoutGuide type="bottom" id="PMo-ca-Tyc"/>
@@ -73,9 +90,49 @@
                     <view key="view" contentMode="scaleToFill" id="PNA-3y-hfe">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icn-ruler" translatesAutoresizingMaskIntoConstraints="NO" id="z3W-KC-2im">
+                                <rect key="frame" x="20" y="72" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="F3n-bh-CiJ"/>
+                                    <constraint firstAttribute="height" constant="50" id="P9Y-wY-Fo7"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unidades" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jyh-X7-SQ8">
+                                <rect key="frame" x="112" y="86" width="73" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IlG-7W-MCm">
+                                <rect key="frame" x="459" y="83" width="121" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="121" id="pn6-Bp-CCz"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Cº"/>
+                                    <segment title="Fº"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Jyh-X7-SQ8" firstAttribute="centerY" secondItem="z3W-KC-2im" secondAttribute="centerY" id="4aM-lN-Q7R"/>
+                            <constraint firstItem="Jyh-X7-SQ8" firstAttribute="leading" secondItem="z3W-KC-2im" secondAttribute="trailing" constant="42" id="FlZ-3c-kZi"/>
+                            <constraint firstItem="z3W-KC-2im" firstAttribute="leading" secondItem="PNA-3y-hfe" secondAttribute="leadingMargin" id="MW1-A8-6g0"/>
+                            <constraint firstItem="IlG-7W-MCm" firstAttribute="trailing" secondItem="PNA-3y-hfe" secondAttribute="trailingMargin" id="fUp-qI-wWI"/>
+                            <constraint firstItem="IlG-7W-MCm" firstAttribute="centerY" secondItem="z3W-KC-2im" secondAttribute="centerY" id="lxg-g5-dB0"/>
+                            <constraint firstItem="z3W-KC-2im" firstAttribute="top" secondItem="ISh-T4-F7e" secondAttribute="bottom" constant="8" id="uig-Kc-U9Q"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Ajustes" id="yRE-Ps-fCq"/>
+                    <navigationItem key="navigationItem" title="Settings" id="yRE-Ps-fCq">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="FFv-NQ-aDs">
+                            <connections>
+                                <action selector="returnToMain:" destination="p1E-ge-Fww" id="mWI-Yj-il3"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="XLZ-tA-45l"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z2h-N9-TSs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -102,6 +159,7 @@
     </scenes>
     <resources>
         <image name="btn-settings" width="32" height="33"/>
+        <image name="icn-ruler" width="34" height="33"/>
         <image name="img-background" width="625" height="390"/>
     </resources>
 </document>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E0792B11CF684DA0039329A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0792B01CF684DA0039329A /* SettingsViewController.swift */; };
 		528FD5851CF65F96002D36FF /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528FD5841CF65F96002D36FF /* APIClient.swift */; };
 		CDDF055547CF8897D499BAD3 /* Pods_SegundoObligatorio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A899A2A89AE8611258692B10 /* Pods_SegundoObligatorio.framework */; };
 		F10A94711CECD28C00536502 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F10A946F1CECD28C00536502 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E0792B01CF684DA0039329A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		528FD5841CF65F96002D36FF /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		661AEA3EB986CADC24979A1B /* Pods-SegundoObligatorio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SegundoObligatorio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SegundoObligatorio/Pods-SegundoObligatorio.debug.xcconfig"; sourceTree = "<group>"; };
 		A899A2A89AE8611258692B10 /* Pods_SegundoObligatorio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SegundoObligatorio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +95,7 @@
 				F10A94741CECD28C00536502 /* LaunchScreen.storyboard */,
 				F10A94771CECD28C00536502 /* Info.plist */,
 				528FD5841CF65F96002D36FF /* APIClient.swift */,
+				0E0792B01CF684DA0039329A /* SettingsViewController.swift */,
 			);
 			path = SegundoObligatorio;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F10A94841CECD6EB00536502 /* ViewController.swift in Sources */,
+				0E0792B11CF684DA0039329A /* SettingsViewController.swift in Sources */,
 				F10A94851CECD6EB00536502 /* WeatherIcon.swift in Sources */,
 				F10A94811CECD6E200536502 /* AppDelegate.swift in Sources */,
 				528FD5851CF65F96002D36FF /* APIClient.swift in Sources */,
