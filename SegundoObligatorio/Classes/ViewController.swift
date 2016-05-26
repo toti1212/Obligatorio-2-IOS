@@ -10,7 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var weatherIconLabel: UILabel!
+    //@IBOutlet weak var weatherIconLabel: UILabel!
+    
+    @IBOutlet weak var weatherIcon: UILabel!
+    
     
     @IBAction func viewSettings(sender: AnyObject) {
         performSegueWithIdentifier("viewSettings", sender: nil)
@@ -24,7 +27,9 @@ class ViewController: UIViewController {
 //        ver: http://openweathermap.org/current#parameter
 //        http://openweathermap.org/weather-conditions
         
-        self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
+        self.weatherIcon.text = WeatherIcon(condition: 200, iconString: "01n").iconText
+        
+        //self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
         
         //self.navigationController?.setNavigationBarHidden(true, animated: true)
         
