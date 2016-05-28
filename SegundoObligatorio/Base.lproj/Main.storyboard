@@ -8,6 +8,7 @@
     <customFonts key="customFonts">
         <mutableArray key="weathericons-regular-webfont.ttf">
             <string>WeatherIcons-Regular</string>
+            <string>WeatherIcons-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -60,28 +61,28 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6fu-hU-7be">
-                                <rect key="frame" x="0.0" y="430" width="600" height="150"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6fu-hU-7be">
+                                <rect key="frame" x="0.0" y="440" width="600" height="140"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="8r3-Yg-5N7"/>
+                                    <constraint firstAttribute="height" constant="140" id="8r3-Yg-5N7"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0Ad-US-0Ba">
-                                    <size key="itemSize" width="137" height="157"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0Ad-US-0Ba">
+                                    <size key="itemSize" width="96" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.40000000000000002" contentMode="center" id="jVF-nf-2aG">
-                                        <rect key="frame" x="0.0" y="0.0" width="137" height="157"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="jVF-nf-2aG" customClass="DayCollectionViewCell" customModule="SegundoObligatorio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="-5" width="96" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="137" height="157"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="96" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1B-zl-V0t">
-                                                    <rect key="frame" x="47" y="8" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1B-zl-V0t">
+                                                    <rect key="frame" x="27" y="8" width="42" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="42" id="X4Z-U3-eVl"/>
                                                     </constraints>
@@ -90,13 +91,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYP-bP-NfI">
-                                                    <rect key="frame" x="47" y="56" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="5" y="34" width="86" height="51"/>
+                                                    <fontDescription key="fontDescription" name="WeatherIcons-Regular" family="Weather Icons" pointSize="35"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFe-AQ-QHB">
-                                                    <rect key="frame" x="47" y="108" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7ºC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFe-AQ-QHB">
+                                                    <rect key="frame" x="33" y="90" width="30" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -104,17 +105,26 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="DYP-bP-NfI" firstAttribute="top" secondItem="u1B-zl-V0t" secondAttribute="bottom" constant="27" id="Erx-bG-yM6"/>
-                                            <constraint firstItem="mFe-AQ-QHB" firstAttribute="top" secondItem="DYP-bP-NfI" secondAttribute="bottom" constant="31" id="Lx5-Cq-hmG"/>
+                                            <constraint firstItem="DYP-bP-NfI" firstAttribute="top" secondItem="u1B-zl-V0t" secondAttribute="bottom" constant="5" id="Erx-bG-yM6"/>
+                                            <constraint firstItem="mFe-AQ-QHB" firstAttribute="top" secondItem="DYP-bP-NfI" secondAttribute="bottom" constant="5" id="Lx5-Cq-hmG"/>
                                             <constraint firstItem="mFe-AQ-QHB" firstAttribute="centerX" secondItem="DYP-bP-NfI" secondAttribute="centerX" id="Y13-m4-lVI"/>
                                             <constraint firstItem="u1B-zl-V0t" firstAttribute="top" secondItem="jVF-nf-2aG" secondAttribute="topMargin" id="bT3-GH-rF9"/>
                                             <constraint firstItem="DYP-bP-NfI" firstAttribute="centerX" secondItem="u1B-zl-V0t" secondAttribute="centerX" id="ipy-pO-97L"/>
                                             <constraint firstItem="u1B-zl-V0t" firstAttribute="centerX" secondItem="jVF-nf-2aG" secondAttribute="centerX" id="zbj-Pp-w0N"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="dayDegree" destination="mFe-AQ-QHB" id="8lQ-ps-JbS"/>
+                                            <outlet property="dayName" destination="u1B-zl-V0t" id="XMI-o4-ojd"/>
+                                            <outlet property="dayWeatherIcon" destination="DYP-bP-NfI" id="Xlt-c6-xPu"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="EzA-a4-vac"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="J6e-VU-hOq"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -138,13 +148,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="Hw0-2h-x2z"/>
                     <connections>
+                        <outlet property="cityName" destination="4nK-KP-k6b" id="3c8-eI-vpH"/>
+                        <outlet property="degrees" destination="Zev-wo-RCT" id="cCf-76-2pA"/>
                         <outlet property="weatherIcon" destination="V24-vt-9yX" id="Cks-xz-37A"/>
-                        <segue destination="UEy-o9-jPY" kind="presentation" identifier="viewSettings" modalTransitionStyle="crossDissolve" id="feN-4A-Ddf"/>
+                        <segue destination="UEy-o9-jPY" kind="show" identifier="viewSettings" id="feN-4A-Ddf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-502" y="-231"/>
+            <point key="canvasLocation" x="-502" y="-233"/>
         </scene>
         <!--Settings-->
         <scene sceneID="zYb-ak-gwi">
