@@ -21,6 +21,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @IBOutlet weak var cityName: UILabel!
     
+    var unitDegree : Int! = 0
+    
 
     
     @IBOutlet weak var weatherIconLabel: UILabel!
@@ -28,11 +30,26 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var latitude : Double = 0.0
     var longitude : Double = 0.0
 
-
     
     @IBAction func viewSettings(sender: AnyObject) {
         performSegueWithIdentifier("viewSettings", sender: nil)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "viewSettings" {
+            
+            let nav = segue.destinationViewController as! UINavigationController
+            let secondViewController = nav.topViewController as! SettingsViewController
+            secondViewController.selectedUnitSwitch = self.unitDegree
+            secondViewController.viewController = self
+        }
+        
+    }
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,17 +63,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.weatherIcon.text = WeatherIcon(condition: 200, iconString: "01n").iconText
         
         //self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
-
-        self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
-
-        
+       
         //self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "img-background.png")!)
         
-            }
+ 
+    }
+    
     
     override func viewWillAppear(animated: Bool) {
+        print("VARIABLE UNITDEGREE \(self.unitDegree)")
         try! SwiftLocation.shared.currentLocation(Accuracy.Neighborhood, timeout: 100,
             
             onSuccess: { (placemark) -> Void in
@@ -66,14 +83,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 print(self.latitude)
                 print(self.longitude)
                 
-                APIClient.sharedClient.wheatherOnCompletion(self.latitude, longitude: self.longitude, OnCompletion: { () -> Void in
+                APIClient.sharedClient.wheatherOnCompletion(self.latitude, longitude: self.longitude, units:self.unitDegree, OnCompletion: { () -> Void in
                     
                 })
             } , onFail:{ (error) -> Void in
                 print(error)
         })
 
-    
     }
 
     override func didReceiveMemoryWarning() {
