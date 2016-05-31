@@ -17,20 +17,23 @@ class APIClient {
     private let lon = ""
     private let mode = "json"
     private let ctn = "7"
-    private let units = "metric"
+    private var units = "metric"
+
     private let APIKEY = "bda63d1506b53aeba67a39e883876d21"
     private init() {
         
     }
-    
-    func wheatherOnCompletion(latitude : Double, longitude:Double, OnCompletion: ()  -> Void){
-        print(latitude);
+
+    func wheatherOnCompletion(latitude : Double, longitude:Double,units:Int, OnCompletion: ()  -> Void){
+        if(units == 0){
+            self.units = "metric"
+        }else{
+            self.units="imperial"
+        }
         
-        print(longitude);
-        
+        print("la unit que voy a usar es.............\(self.units)")
         let request_url = "\(self.baseURL)lat=\(latitude)&lon=\(longitude)&units=\(self.units)&ctn=\(self.ctn)&appid=\(self.APIKEY)"
-            //"&mode=" + self.mode +
-            //"&units=" + self.units +
+  
             
         Alamofire.request(.GET, request_url).validate().responseJSON{ (response:Response<AnyObject, NSError>) -> Void in
             print (response)
