@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
+import SwiftLocation
+
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -18,6 +21,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @IBOutlet weak var cityName: UILabel!
     
+
+    
+    @IBOutlet weak var weatherIconLabel: UILabel!
+    let locationManager =  CLLocationManager()
+    var latitude : Double = 0.0
+    var longitude : Double = 0.0
+
+
     
     @IBAction func viewSettings(sender: AnyObject) {
         performSegueWithIdentifier("viewSettings", sender: nil)
@@ -26,6 +37,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
 //        condition: weather.id
 //        iconString: weather.icon
 //        ver: http://openweathermap.org/current#parameter
@@ -34,18 +46,34 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.weatherIcon.text = WeatherIcon(condition: 200, iconString: "01n").iconText
         
         //self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
+
+        self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
+
         
         //self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "img-background.png")!)
         
-        
-    }
+            }
     
     override func viewWillAppear(animated: Bool) {
-        APIClient.sharedClient.wheatherOnCompletion { () -> Void in
+        try! SwiftLocation.shared.currentLocation(Accuracy.Neighborhood, timeout: 100,
             
-        }
+            onSuccess: { (placemark) -> Void in
+                self.latitude = (placemark?.coordinate.latitude)!
+                self.longitude = (placemark?.coordinate.longitude)!
+                
+                print(self.latitude)
+                print(self.longitude)
+                
+                APIClient.sharedClient.wheatherOnCompletion(self.latitude, longitude: self.longitude, OnCompletion: { () -> Void in
+                    
+                })
+            } , onFail:{ (error) -> Void in
+                print(error)
+        })
+
+    
     }
 
     override func didReceiveMemoryWarning() {

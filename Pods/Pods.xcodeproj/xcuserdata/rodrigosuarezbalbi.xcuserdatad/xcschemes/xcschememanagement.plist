@@ -19,6 +19,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftLocation-SwiftLocation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftLocation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0A4F2F5028F53E76E42BF959699FBC59</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>432ECC54282C84882B482CCB4CF227FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>561BF2E2D1EC667A8324204309532BF0</key>
+		<key>B2FA137555D924EC06FBA70C70B4E5CD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B589B60FACBBCAA42BA79800DB29DC12</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E82421CBEE4F9A6C8D5D9FEC459CE24A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EE55346F25237E3A2F9AA71C8A2342AF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F0074FB24EC29975A0FC6C9FA9C30FCC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
