@@ -83,8 +83,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 print(self.latitude)
                 print(self.longitude)
                 
-                APIClient.sharedClient.wheatherOnCompletion(self.latitude, longitude: self.longitude, units:self.unitDegree, OnCompletion: { () -> Void in
-                    
+                APIClient.sharedClient.wheatherOnCompletion(self.latitude, longitude: self.longitude, units:self.unitDegree, OnCompletion: { (weatherList, error) -> Void in
+                    if let result = weatherList{
+                        self.cityName.text = result.city
+                        print(result.weathers![0].condition)
+                        self.weatherIcon.text = WeatherIcon(condition: result.weathers![0].condition!, iconString:result.weathers![0].icon!).iconText
+                    }
+                    else{
+                        print(error)
+                    }
                 })
             } , onFail:{ (error) -> Void in
                 print(error)

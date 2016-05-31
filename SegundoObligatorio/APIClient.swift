@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 class APIClient {
+    
     static let sharedClient = APIClient()
     private let baseURL = "http://api.openweathermap.org/data/2.5/forecast/daily?"
     private let lat = ""
@@ -18,26 +19,63 @@ class APIClient {
     private let mode = "json"
     private let ctn = "7"
     private var units = "metric"
-
     private let APIKEY = "bda63d1506b53aeba67a39e883876d21"
+    
+    
     private init() {
         
     }
 
-    func wheatherOnCompletion(latitude : Double, longitude:Double,units:Int, OnCompletion: ()  -> Void){
+    
+    func wheatherOnCompletion(latitude : Double, longitude:Double,units:Int, OnCompletion: (WeatherList : WeatherList?, error: NSError?)  -> Void){
         if(units == 0){
             self.units = "metric"
         }else{
             self.units="imperial"
         }
         
-        print("la unit que voy a usar es.............\(self.units)")
         let request_url = "\(self.baseURL)lat=\(latitude)&lon=\(longitude)&units=\(self.units)&ctn=\(self.ctn)&appid=\(self.APIKEY)"
-  
             
-        Alamofire.request(.GET, request_url).validate().responseJSON{ (response:Response<AnyObject, NSError>) -> Void in
-            print (response)
+        Alamofire.request(.GET, request_url).validate().responseJSON{ response in
+            switch response.result {
+            case .Success:
+                if let value = response.result.value {
+                    
+                    let weatherListObj = WeatherList()
+                    var weatherListArray = [Weather]()
+                    // let dateFormatter = NSDateFormatter()
+                    let json = JSON(value)
+                    
+                    weatherListObj.city = json["city"]["name"].stringValue
+                    
+                    for weather in json["list"].arrayValue {
+                        let weatherObj = Weather()
+                        
+                        let day = NSDate(timeIntervalSince1970: weather["dt"].doubleValue)
+                        let minTemp = weather["temp"] ["min"].doubleValue
+                        let maxTemp = weather["temp"] ["max"].doubleValue
+                        let icon = weather["weather"] ["icon"].stringValue
+                        let condition = weather["weather"] ["id"].intValue
+                        
+                        print("\( weather["weather"])")
+                        weatherObj.day = day
+                        weatherObj.minTemp = minTemp
+                        weatherObj.maxTemp = maxTemp
+                        weatherObj.icon = icon
+                        weatherObj.condition = condition
+                        
+                        weatherListArray.append(weatherObj)
+                    }
+                    
+                    weatherListObj.weathers = weatherListArray;
+                    
+                    OnCompletion(WeatherList: weatherListObj, error: nil)
+                }
+            case .Failure(let error):
+                print(error)
+                OnCompletion(WeatherList:nil, error: error)
             }
+        }
         
         
     }
