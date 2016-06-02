@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import SwiftDate
 
 class APIClient {
     
@@ -43,22 +44,25 @@ class APIClient {
                     
                     let weatherListObj = WeatherList()
                     var weatherListArray = [Weather]()
-                    // let dateFormatter = NSDateFormatter()
+                    let dateFormatter = NSDateFormatter()
                     let json = JSON(value)
-                    
+                    print("\( json)")
+
                     weatherListObj.city = json["city"]["name"].stringValue
                     
                     for weather in json["list"].arrayValue {
                         let weatherObj = Weather()
                         
                         let day = NSDate(timeIntervalSince1970: weather["dt"].doubleValue)
+                        dateFormatter.dateFormat = "EEE"
+                        let stringDay = dateFormatter.stringFromDate(day)
+                        
                         let minTemp = weather["temp"] ["min"].doubleValue
                         let maxTemp = weather["temp"] ["max"].doubleValue
-                        let icon = weather["weather"] ["icon"].stringValue
-                        let condition = weather["weather"] ["id"].intValue
+                        let icon = weather["weather"][0]["icon"].stringValue
+                        let condition = weather["weather"][0]["id"].intValue
                         
-                        print("\( weather["weather"])")
-                        weatherObj.day = day
+                        weatherObj.day = stringDay
                         weatherObj.minTemp = minTemp
                         weatherObj.maxTemp = maxTemp
                         weatherObj.icon = icon

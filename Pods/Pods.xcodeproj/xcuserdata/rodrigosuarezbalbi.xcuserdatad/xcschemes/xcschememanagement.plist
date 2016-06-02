@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftDate.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftLocation-SwiftLocation.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,17 +42,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>04D5E4F27E8235630968FC6ABE986E65</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>264884BC6918D9AE07ACF7ED02A6B872</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2A3839B54BCBDC00158713095D8941C5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3DB33B3B4EE1EFC75C2C41C4BCA8ABAD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>432ECC54282C84882B482CCB4CF227FC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B2FA137555D924EC06FBA70C70B4E5CD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B589B60FACBBCAA42BA79800DB29DC12</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,12 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EE55346F25237E3A2F9AA71C8A2342AF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F0074FB24EC29975A0FC6C9FA9C30FCC</key>
+		<key>FE7E5E6499152DBBC0AC64EE56689715</key>
 		<dict>
 			<key>primary</key>
 			<true/>

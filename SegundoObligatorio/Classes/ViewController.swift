@@ -22,6 +22,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var cityName: UILabel!
     
     var unitDegree : Int! = 0
+    var textDegree : String! = ""
     
 
     
@@ -29,7 +30,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     let locationManager =  CLLocationManager()
     var latitude : Double = 0.0
     var longitude : Double = 0.0
-
+    var weatherArray = [Weather]()
     
     @IBAction func viewSettings(sender: AnyObject) {
         performSegueWithIdentifier("viewSettings", sender: nil)
@@ -86,8 +87,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 APIClient.sharedClient.wheatherOnCompletion(self.latitude, longitude: self.longitude, units:self.unitDegree, OnCompletion: { (weatherList, error) -> Void in
                     if let result = weatherList{
                         self.cityName.text = result.city
-                        print(result.weathers![0].condition)
                         self.weatherIcon.text = WeatherIcon(condition: result.weathers![0].condition!, iconString:result.weathers![0].icon!).iconText
+                        self.weatherArray = (weatherList?.weathers)!
+                        if(self.unitDegree == 0){
+                            self.textDegree = "ºC"
+                        }else{
+                            self.textDegree = "ºF"
+                        }
+                        self.degrees.text = String("\(self.averageTemp(self.weatherArray[0].minTemp!, max: self.weatherArray[0].maxTemp!))\(self.textDegree)")
+
+                        self.collectionDays.reloadData()
                     }
                     else{
                         print(error)
@@ -99,25 +108,30 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     
+    func averageTemp(min:Double,max:Double) -> Int{
+        return Int(min + max)/2
+    }
     
     
+    
+    @IBOutlet weak var collectionDays: UICollectionView!
     
     
     let reuseIdentifier = "cell"
     //var items = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    
 
     
     // tell the collection view how many cells to make
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return self.items.count
-        return 6
+        return weatherArray.count - 1
     }
     
     // make a cell for each cell index path
@@ -128,9 +142,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         //cell.dayWeatherIcon.text = self.items[indexPath.item]
+        let day = weatherArray[indexPath.row + 1]
         
-        cell.dayWeatherIcon.text = WeatherIcon(condition: 200, iconString: "01n").iconText
+        cell.dayWeatherIcon.text = WeatherIcon(condition: day.condition!, iconString: day.icon!).iconText
         
+        cell.dayDegree.text = String("\(averageTemp(day.minTemp!, max: day.maxTemp!))\(self.textDegree)")
+        cell.dayName.text = day.day
         
         //cell.backgroundColor = UIColor.yellowColor() // make cell more visible in our example project
         
@@ -145,5 +162,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
 
 
+}
+
+extension NSDate{
+    
+    
 }
 

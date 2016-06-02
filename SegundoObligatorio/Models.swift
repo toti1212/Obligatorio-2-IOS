@@ -11,7 +11,7 @@ import Foundation
 
 class Weather: NSObject {
     
-    var day: NSDate?
+    var day: String?
     var condition: Int?
     var minTemp: Double?
     var maxTemp: Double?
