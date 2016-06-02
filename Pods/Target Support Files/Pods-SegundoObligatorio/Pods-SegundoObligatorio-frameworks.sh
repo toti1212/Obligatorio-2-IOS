@@ -86,12 +86,14 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-SegundoObligatorio/Alamofire.framework"
   install_framework "Pods-SegundoObligatorio/ObjectMapper.framework"
+  install_framework "Pods-SegundoObligatorio/SwiftDate.framework"
   install_framework "Pods-SegundoObligatorio/SwiftLocation.framework"
   install_framework "Pods-SegundoObligatorio/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-SegundoObligatorio/Alamofire.framework"
   install_framework "Pods-SegundoObligatorio/ObjectMapper.framework"
+  install_framework "Pods-SegundoObligatorio/SwiftDate.framework"
   install_framework "Pods-SegundoObligatorio/SwiftLocation.framework"
   install_framework "Pods-SegundoObligatorio/SwiftyJSON.framework"
 fi
