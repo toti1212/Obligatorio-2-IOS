@@ -12,25 +12,20 @@ import SwiftLocation
 
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-
-    //@IBOutlet weak var weatherIconLabel: UILabel!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var weatherIcon: UILabel!
-    
     @IBOutlet weak var degrees: UILabel!
-    
     @IBOutlet weak var cityName: UILabel!
     
-    var unitDegree : Int! = 0
+    var unitDegree : Int! = NSUserDefaults.standardUserDefaults().integerForKey(PersitedData.unit)
     var textDegree : String! = ""
-    
-
-    
-    @IBOutlet weak var weatherIconLabel: UILabel!
     let locationManager =  CLLocationManager()
     var latitude : Double = 0.0
     var longitude : Double = 0.0
     var weatherArray = [Weather]()
+    
+    
     
     @IBAction func viewSettings(sender: AnyObject) {
         performSegueWithIdentifier("viewSettings", sender: nil)
@@ -55,82 +50,108 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-//        condition: weather.id
-//        iconString: weather.icon
-//        ver: http://openweathermap.org/current#parameter
-//        http://openweathermap.org/weather-conditions
+        //Hide objects and start activity Indicator
+        self.hideObjects()
+        activityIndicator.startAnimating()
+        self.unitDegree = NSUserDefaults.standardUserDefaults().integerForKey(PersitedData.unit)
         
-        self.weatherIcon.text = WeatherIcon(condition: 200, iconString: "01n").iconText
-        
-        //self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
-       
-        //self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "img-background.png")!)
-        
- 
+        getData()
     }
     
     
+    
     override func viewWillAppear(animated: Bool) {
-        print("VARIABLE UNITDEGREE \(self.unitDegree)")
-        try! SwiftLocation.shared.currentLocation(Accuracy.Neighborhood, timeout: 100,
+        if(self.unitDegree != NSUserDefaults.standardUserDefaults().integerForKey(PersitedData.unit)){
+            self.activityIndicator.hidden = false
+            self.hideObjects()
+            activityIndicator.startAnimating()
             
-            onSuccess: { (placemark) -> Void in
-                self.latitude = (placemark?.coordinate.latitude)!
-                self.longitude = (placemark?.coordinate.longitude)!
-                
-                print(self.latitude)
-                print(self.longitude)
-                
-                APIClient.sharedClient.wheatherOnCompletion(self.latitude, longitude: self.longitude, units:self.unitDegree, OnCompletion: { (weatherList, error) -> Void in
-                    if let result = weatherList{
-                        self.cityName.text = result.city
-                        self.weatherIcon.text = WeatherIcon(condition: result.weathers![0].condition!, iconString:result.weathers![0].icon!).iconText
-                        self.weatherArray = (weatherList?.weathers)!
-                        if(self.unitDegree == 0){
-                            self.textDegree = "ºC"
-                        }else{
-                            self.textDegree = "ºF"
-                        }
-                        self.degrees.text = String("\(self.averageTemp(self.weatherArray[0].minTemp!, max: self.weatherArray[0].maxTemp!))\(self.textDegree)")
-
-                        self.collectionDays.reloadData()
-                    }
-                    else{
-                        print(error)
-                    }
-                })
-            } , onFail:{ (error) -> Void in
-                print(error)
-        })
-
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setInteger(unitDegree, forKey: PersitedData.unit)
+        
+            getData()
+        
+       
+            
+        }
     }
 
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    //---------------- FUNCTIONS -----------------------
     
+    func getData(){
+        //Getting data and parse to set in views elements.
+        try! SwiftLocation.shared.currentLocation(Accuracy.Neighborhood, timeout: 100,
+                                                  
+                                                  onSuccess: { (placemark) -> Void in
+                                                    self.latitude = (placemark?.coordinate.latitude)!
+                                                    self.longitude = (placemark?.coordinate.longitude)!
+                                                    
+                                                    //Getting data
+                                                    APIClient.sharedClient.wheatherOnCompletion(self.latitude, longitude: self.longitude, units:self.unitDegree, OnCompletion: { (weatherList, error) -> Void in
+                                                        if let result = weatherList{
+                                                            self.cityName.text = result.city
+                                                            self.weatherIcon.text = WeatherIcon(condition: result.weathers![0].condition!, iconString:result.weathers![0].icon!).iconText
+                                                            self.weatherArray = (weatherList?.weathers)!
+                                                            
+                                                            if(self.unitDegree == 0){
+                                                                self.textDegree = "ºC"
+                                                            }else{
+                                                                self.textDegree = "ºF"
+                                                            }
+                                                            
+                                                            self.degrees.text = String("\(self.averageTemp(self.weatherArray[0].minTemp!, max: self.weatherArray[0].maxTemp!))\(self.textDegree)")
+                                                            
+                                                            self.collectionDays.reloadData()
+                                                            self.activityIndicator.stopAnimating()
+                                                            self.activityIndicator.hidden = true
+                                                            self.unhideObjects()
+                                                        }
+                                                        else{
+                                                            let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .Alert)
+                                                            alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                                                            self.presentViewController(alert, animated: true, completion: nil)
+                                                        }
+                                                    })
+            } , onFail:{ (error) -> Void in
+                print("\(error)")
+                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+        })
+    }
     func averageTemp(min:Double,max:Double) -> Int{
         return Int(min + max)/2
     }
     
+    func hideObjects(){
+        self.collectionDays.hidden = true
+        self.cityName.hidden = true
+        self.degrees.hidden = true
+        self.weatherIcon.hidden = true
+    }
+    
+    func unhideObjects(){
+        self.collectionDays.hidden = false
+        self.cityName.hidden = false
+        self.degrees.hidden = false
+        self.weatherIcon.hidden = false
+    }
+    
+    //-------------------------------------------------
     
     
     @IBOutlet weak var collectionDays: UICollectionView!
     
-    
     let reuseIdentifier = "cell"
-    //var items = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-
     
     // tell the collection view how many cells to make
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return self.items.count
         return weatherArray.count - 1
     }
     
@@ -145,27 +166,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let day = weatherArray[indexPath.row + 1]
         
         cell.dayWeatherIcon.text = WeatherIcon(condition: day.condition!, iconString: day.icon!).iconText
-        
         cell.dayDegree.text = String("\(averageTemp(day.minTemp!, max: day.maxTemp!))\(self.textDegree)")
         cell.dayName.text = day.day
-        
-        //cell.backgroundColor = UIColor.yellowColor() // make cell more visible in our example project
         
         return cell
     }
     
-    // MARK: - UICollectionViewDelegate protocol
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // handle tap events
-        print("You selected cell #\(indexPath.item)!")
+     struct PersitedData{
+        static let unit = "units"
     }
 
-
 }
 
-extension NSDate{
-    
-    
-}
 
