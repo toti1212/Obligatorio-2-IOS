@@ -22,7 +22,6 @@ class APIClient {
     private var units = "metric"
     private let APIKEY = "bda63d1506b53aeba67a39e883876d21"
     
-    
     private init() {
         
     }
@@ -46,8 +45,7 @@ class APIClient {
                     var weatherListArray = [Weather]()
                     let dateFormatter = NSDateFormatter()
                     let json = JSON(value)
-                    print("\( json)")
-
+                    print("\(json)")
                     weatherListObj.city = json["city"]["name"].stringValue
                     
                     for weather in json["list"].arrayValue {
@@ -77,7 +75,7 @@ class APIClient {
                 }
             case .Failure(let error):
                 print(error)
-                OnCompletion(WeatherList:nil, error: error)
+                OnCompletion(WeatherList:nil, error: NSError(domain: "GET DATA", code: 999, userInfo: [NSLocalizedDescriptionKey : "Fallo al obtener los datos"]))
             }
         }
         
